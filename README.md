@@ -149,6 +149,41 @@ forge script script/Deploy.s.sol:Deploy \
 
 Set the deployed address in `.env` as `NEXT_PUBLIC_EXECUTION_GRAPH_REGISTRY_ADDRESS`.
 
+## Deploy to Netlify
+
+Netlify only hosts the **Next.js frontend** (`apps/web`). The Rust API must run elsewhere (Railway, Fly.io, Render, etc.) if you want live discovery and compile — otherwise the UI falls back to mock data when the API is unreachable.
+
+### 1. Connect the repo
+
+1. [Netlify](https://app.netlify.com) → **Add new site** → **Import from Git** → select `main`.
+2. Netlify reads `netlify.toml` at the repo root — **base directory** is already set to `apps/web`. Do not override it unless you know what you’re changing.
+
+### 2. Set environment variables
+
+In **Site configuration → Environment variables**, add (values from your local `.env`):
+
+| Variable | Example |
+|----------|---------|
+| `NEXT_PUBLIC_API_URL` | `https://your-api-host.example.com` (omit or leave unset for mock-only demo) |
+| `NEXT_PUBLIC_EXECUTION_GRAPH_REGISTRY_ADDRESS` | `0x4464Ad7D8145788D3061645E2f14e36aFeF542f3` |
+| `NEXT_PUBLIC_CHAIN_ID` | `10143` |
+| `NEXT_PUBLIC_MONAD_TESTNET_RPC` | `https://testnet-rpc.monad.xyz` |
+| `NEXT_PUBLIC_MONAD_COORDINATION_WALLET` | your coordination wallet address |
+
+Never put server secrets (`OPENAI_API_KEY`, `PRIVATE_KEY`, `X_BEARER_TOKEN`, etc.) in Netlify — those belong on the API host only.
+
+### 3. Deploy
+
+Push to `main` (or trigger **Deploy site**). A successful build log ends with `next build` completing and the Next.js runtime plugin publishing the app.
+
+### Common failures
+
+| Symptom | Fix |
+|---------|-----|
+| Build fails: “No package.json” | Base directory must be `apps/web` (use repo `netlify.toml` or set in Netlify UI). |
+| Site loads but discovery/compile feel “fake” | `NEXT_PUBLIC_API_URL` points at `localhost:8080` or the API isn’t deployed — deploy `services/api` and set the public URL. |
+| Monad commit button disabled | Set `NEXT_PUBLIC_EXECUTION_GRAPH_REGISTRY_ADDRESS` in Netlify env vars and redeploy. |
+
 ## Security
 
 - Keep secrets in `.env` only — it is gitignored.

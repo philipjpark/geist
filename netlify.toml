@@ -1,0 +1,13 @@
+# Geist is a monorepo — the Next.js app lives in apps/web.
+# Netlify must build from that directory, not the repo root.
+
+[build]
+  base = "apps/web"
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
