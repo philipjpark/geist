@@ -157,4 +157,4 @@ Set the deployed address in `.env` as `NEXT_PUBLIC_EXECUTION_GRAPH_REGISTRY_ADDR
 
 ## License
 
-MIT (or your chosen license)
+MIT (choose your license)
