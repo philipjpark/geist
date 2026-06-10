@@ -1,6 +1,10 @@
-# Geist
+<p align="center">
+  <img src="geist_logo1.png" alt="Geist logo" width="200" />
+</p>
 
-**Structure intent before execution.**
+<h1 align="center">Geist</h1>
+
+<p align="center"><strong>Structure intent before execution.</strong></p>
 
 Geist is a semantic execution compiler for fragmented markets — especially OTC and social-driven discovery. It ingests corpus signals, structures them into typed Semantic IR, scores execution risk, and commits a verifiable proof to Monad. It is **not** a broker, exchange, or trading bot.
 

@@ -53,7 +53,7 @@ export function TrendDiscovery({
           disabled={loading}
           className="rounded-full bg-rh-green px-5 py-2 font-mono text-sm font-bold text-rh-on-green transition hover:bg-rh-green-hover disabled:opacity-50"
         >
-          {loading ? "Scanning…" : "Scan markets"}
+          {loading ? "Scanning socials…" : "Scan socials"}
         </button>
       </div>
 

@@ -303,7 +303,7 @@ function RailHeader({ spawned }: { spawned?: boolean }) {
           <TermHint term="coordination_rail" />
         </span>
         <p className="mt-0.5 font-mono text-[9px] uppercase tracking-wider text-rh-muted/80">
-          Monad proof substrate · not the product
+          Monad proof substrate
         </p>
       </div>
       {spawned && (
